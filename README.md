@@ -2,8 +2,8 @@
 
 ## Introduction
 
-This repository's main reason of existence is its associated wiki, that can be consulted when browsing the git server's
-webinterface for this repository and clicking its *Wiki* menu option or icon.
+> This repository's main reason of existence is **its associated wiki**, that can be consulted when browsing the git server's
+> webinterface for this repository and **clicking its *Wiki* menu option or icon**.
 
 We're describing a first server (hence "server1) that can run our installed tools and applications.
 
