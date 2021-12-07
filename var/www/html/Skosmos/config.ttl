@@ -1,0 +1,299 @@
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix wv: <http://vocab.org/waiver/terms/norms> .
+@prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosmos: <http://purl.org/net/skosmos#> .
+@prefix isothes: <http://purl.org/iso25964/skos-thes#> .
+@prefix mdrtype: <http://publications.europa.eu/resource/authority/dataset-type/> .
+@prefix : <#> .
+
+# Skosmos main configuration
+
+:config a skosmos:Configuration ;
+    # SPARQL endpoint
+    # our one and only active endpoint
+    skosmos:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+    # use the dev.finto.fi endpoint where the example vocabularies reside
+    # set to "JenaText" instead if you use Fuseki with jena-text index
+    skosmos:sparqlDialect "JenaText" ;
+    # whether to enable collation in sparql queries
+    skosmos:sparqlCollationEnabled false ;
+    # HTTP client configuration
+    skosmos:sparqlTimeout 20 ;
+    skosmos:httpTimeout 5 ;
+    # customize the service name
+    skosmos:serviceName "Skosmos" ;
+    # customize the base element. Set this if the automatic base url detection doesn't work. For example setups behind a proxy.
+    # skosmos:baseHref "http://localhost/Skosmos/" ;
+    # interface languages available, and the corresponding system locales
+    skosmos:languages (
+        [ rdfs:label "en" ; rdf:value "en_GB.utf8" ]
+        [ rdfs:label "nl" ; rdf:value "nl_BE.utf8" ]
+    ) ;
+    # how many results (maximum) to load at a time on the search results page
+    skosmos:searchResultsSize 20 ;
+    # how many items (maximum) to retrieve in transitive property queries
+    skosmos:transitiveLimit 1000 ;
+    # whether or not to log caught exceptions
+    skosmos:logCaughtExceptions false ;
+    # set to TRUE to enable logging into browser console
+    skosmos:logBrowserConsole false ;
+    # set to a logfile path to enable logging into log file
+    # skosmos:logFileName "" ;
+    # a default location for Twig template rendering
+    skosmos:templateCache "/tmp/skosmos-template-cache" ;
+    # customize the css by adding your own stylesheet
+    skosmos:customCss "resource/css/stylesheet.css" ;
+    # default email address where to send the feedback
+    skosmos:feedbackAddress "" ;
+    # email address to set as the sender for feedback messages
+    skosmos:feedbackSender "" ;
+    # email address to set as the envelope sender for feedback messages
+    skosmos:feedbackEnvelopeSender "" ;
+    # whether to display the ui language selection as a dropdown (useful for cases where there are more than 3 languages) 
+    skosmos:uiLanguageDropdown false ;
+    # whether to enable the spam honey pot or not, enabled by default
+    skosmos:uiHoneypotEnabled true ;
+    # default time a user must wait before submitting a form
+    skosmos:uiHoneypotTime 5 ;
+    # plugins to activate for the whole installation (including all vocabularies)
+    skosmos:globalPlugins () .
+
+# Skosmos vocabularies
+
+:elem a skosmos:Vocabulary, void:Dataset ;
+    dc:title "a. elementsoorten"@nl ;
+    skosmos:shortName "ELEM";
+    dc:subject :cat_general ;
+    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/elem/";
+    skosmos:language "nl";
+    skosmos:defaultLanguage "nl";
+    skosmos:showTopConcepts false ;
+    skosmos:fullAlphabeticalIndex false ;
+    skosmos:groupClass skos:Collection ;
+    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/elem/> .
+
+:curr1 a skosmos:Vocabulary, void:Dataset ;
+    dc:title "b. curriculum (secundair onderwijs)"@nl ;
+    skosmos:shortName "CURR1";
+    dc:subject :cat_general ;
+    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/curr1/";
+    skosmos:language "nl";
+    skosmos:defaultLanguage "nl";
+    skosmos:showTopConcepts true ;
+    skosmos:fullAlphabeticalIndex true ;
+    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/curr1/> .
+
+:vak1 a skosmos:Vocabulary, void:Dataset ;
+    dc:title "c. vakken (secundair onderwijs)"@nl ;
+    skosmos:shortName "VAK1";
+    dc:subject :cat_general ;
+    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/vak1/";
+    skosmos:language "nl";
+    skosmos:defaultLanguage "nl";
+    skosmos:showTopConcepts true ;
+    skosmos:fullAlphabeticalIndex true ;
+    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/vak1/> .
+
+:tref1 a skosmos:Vocabulary, void:Dataset ;
+    dc:title "d. trefwoorden (secundair onderwijs)"@nl ;
+    skosmos:shortName "TREF1";
+    dc:subject :cat_general ;
+    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/tref1/";
+    skosmos:language "nl";
+    skosmos:defaultLanguage "nl";
+    skosmos:showTopConcepts false ;
+    skosmos:fullAlphabeticalIndex true ;
+    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/tref1/> .
+
+:curr2 a skosmos:Vocabulary, void:Dataset ;
+    dc:title "e. curriculum (lager onderwijs)"@nl ;
+    skosmos:shortName "CURR2";
+    dc:subject :cat_general ;
+    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/curr2/";
+    skosmos:language "nl";
+    skosmos:defaultLanguage "nl";
+    skosmos:showTopConcepts true ;
+    skosmos:fullAlphabeticalIndex true ;
+    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/curr2/> .
+
+:tref2 a skosmos:Vocabulary, void:Dataset ;
+    dc:title "f. trefwoorden (lager onderwijs)"@nl ;
+    skosmos:shortName "TREF2";
+    dc:subject :cat_general ;
+    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/tref2/";
+    skosmos:language "nl";
+    skosmos:defaultLanguage "nl";
+    skosmos:showTopConcepts false ;
+    skosmos:fullAlphabeticalIndex true ;
+    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/tref2/> .
+
+:ondniv a skosmos:Vocabulary, void:Dataset ;
+    dc:title "g. onderwijsniveaus"@nl ;
+    skosmos:shortName "ONDNIV";
+    dc:subject :cat_general ;
+    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/ondniv/";
+    skosmos:language "nl";
+    skosmos:defaultLanguage "nl";
+    skosmos:showTopConcepts true ;
+    skosmos:fullAlphabeticalIndex true ;
+    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/ondniv/> .
+
+:onddoel a skosmos:Vocabulary, void:Dataset ;
+    dc:title "h. onderwijsdoelen (eindtermen)"@nl ;
+    skosmos:shortName "ONDDOEL";
+    dc:subject :cat_general ;
+    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/onddoel/";
+    skosmos:language "nl";
+    skosmos:defaultLanguage "nl";
+    skosmos:showTopConcepts false ;
+    skosmos:fullAlphabeticalIndex true ;
+    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/onddoel/> .
+
+
+#:trm a skosmos:Vocabulary, void:Dataset ;
+#    dc:title "z. vorig termenlijst schema"@nl ;
+#    skosmos:shortName "TRM";
+#    dc:subject :cat_general ;
+#    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/trm/";
+#    skosmos:language "nl";
+#    skosmos:defaultLanguage "nl";
+#    skosmos:showTopConcepts true ;
+#    skosmos:fullAlphabeticalIndex false ;
+#    skosmos:groupClass skos:Collection ;
+#    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+#    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/trm/> .
+
+#:trm1 a skosmos:Vocabulary, void:Dataset ;
+#    dc:title "Termenlijst schema - variant1: met skos:Collection"@nl ;
+#    skosmos:shortName "TRM1";
+#    dc:subject :cat_general ;
+#    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/trm1/";
+#    skosmos:language "nl";
+#    skosmos:defaultLanguage "nl";
+#    skosmos:showTopConcepts true ;
+#    skosmos:fullAlphabeticalIndex false ;
+#    skosmos:groupClass skos:Collection ;
+#    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+#    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/trm1/> .
+
+#:trm2 a skosmos:Vocabulary, void:Dataset ;
+#    dc:title "Termenlijst schema - variant2: variant1 + skos:related (op Vakken)"@nl ;
+#    skosmos:shortName "TRM2";
+#    dc:subject :cat_general ;
+#    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/trm2/";
+#    skosmos:language "nl";
+#    skosmos:defaultLanguage "nl";
+#    skosmos:showTopConcepts true ;
+#    skosmos:fullAlphabeticalIndex false ;
+#    skosmos:groupClass skos:Collection ;
+#    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+#    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/trm2/> .
+
+#:trm3 a skosmos:Vocabulary, void:Dataset ;
+#    dc:title "Termenlijst schema - variant3: variant2 + skos:related (op Trefwoorden)"@nl ;
+#    skosmos:shortName "TRM3";
+#    dc:subject :cat_general ;
+#    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/trm3/";
+#    skosmos:language "nl";
+#    skosmos:defaultLanguage "nl";
+#    skosmos:showTopConcepts true ;
+#    skosmos:fullAlphabeticalIndex false ;
+#    skosmos:groupClass skos:Collection ;
+#    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+#    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/trm3/> .
+
+#:trm3a a skosmos:Vocabulary, void:Dataset ;
+#    dc:title "Termenlijst schema - variant3a: trefwoorden test met skosxl:Label (minimum aan data)"@nl ;
+#    skosmos:shortName "TRM3A";
+#    dc:subject :cat_general ;
+#    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/trm3a/";
+#    skosmos:language "nl";
+#    skosmos:defaultLanguage "nl";
+#    skosmos:showTopConcepts true ;
+#    skosmos:fullAlphabeticalIndex false ;
+#    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+#    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/trm3a/> .
+
+#:trm3b a skosmos:Vocabulary, void:Dataset ;
+#    dc:title "Termenlijst schema - variant3b: trefwoorden test met eigen vocabularium (minimum aan data)"@nl ;
+#    skosmos:shortName "TRM3B";
+#    dc:subject :cat_general ;
+#    void:uriSpace "http://ilearn.ilabt.imec.be/vocab/trm3b/";
+#    skosmos:language "nl";
+#    skosmos:defaultLanguage "nl";
+#    skosmos:showTopConcepts true ;
+#    skosmos:fullAlphabeticalIndex false ;
+#    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+#    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/trm3b/> .
+
+#:stdst a skosmos:Vocabulary, void:Dataset ;
+#    dc:title "Voorbeeld extern schemaatje"@nl ;
+#    skosmos:shortName "STDST";
+#    dc:subject :cat_general ;
+#    void:uriSpace "https://data.vlaanderen.be/id/conceptscheme/StandaardStatus/";
+#    skosmos:language "nl";
+#    skosmos:defaultLanguage "nl";
+#    skosmos:showTopConcepts true ;
+#    skosmos:fullAlphabeticalIndex true ;
+#    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+#    skosmos:sparqlGraph <https://data.vlaanderen.be/id/conceptscheme/StandaardStatus/> .
+
+#:unesco a skosmos:Vocabulary, void:Dataset ;
+#    dc:title "UNESCO Thesaurus"@en ;
+#    skosmos:shortName "UNESCO";
+#    dc:subject :cat_general ;
+#    void:uriSpace "http://skos.um.es/unescothes/";
+#    skosmos:language "en", "es", "fr", "ru";
+#    skosmos:defaultLanguage "en";
+#    skosmos:showTopConcepts true ;
+#    skosmos:fullAlphabeticalIndex true ;
+#    skosmos:groupClass isothes:ConceptGroup ;
+#    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+#    skosmos:sparqlGraph <http://skos.um.es/unescothes/> .
+
+#:stw a skosmos:Vocabulary, void:Dataset ;
+#    dc:title "STW Thesaurus for Economics"@en ;
+#    skosmos:shortName "STW";
+#    dc:subject :cat_general ;
+#    void:uriSpace "http://zbw.eu/stw/";
+#    skosmos:language "en", "de";
+#    skosmos:defaultLanguage "de";
+#    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
+#    skosmos:sparqlGraph <http://zbw.eu/stw/> .
+
+:categories a skos:ConceptScheme;
+    skos:prefLabel "Skosmos Vocabulary Categories"@en,
+        "Skosmos Woordenlijst Categorieën"@nl
+.
+
+:cat_general a skos:Concept ;
+    skos:topConceptOf :categories ;
+    skos:inScheme :categories ;
+    skos:prefLabel "Yleiskäsitteet"@fi,
+        "Allmänna begrepp"@sv,
+        "General concepts"@en,
+	"Algemene concepten"@nl
+.
+
+mdrtype:THESAURUS a skos:Concept ;
+    skos:prefLabel "Тезаурус"@bg, "Tezaurus"@cs, "Tesaurus"@da, "Thesaurus"@de, "Θησαυρός"@el, "Thesaurus"@en, "Tesaurus"@et, "Tesaurus"@fi, "Thésaurus"@fr, "Pojmovnik"@hr, "Tezaurusz"@hu, "Tesauro"@it, "Tēzaurs"@lv, "Tezauras"@lt, "Teżawru"@mt, "Thesaurus"@nl, "Tesaurus"@no, "Tezaurus"@pl, "Tesauro"@pt, "Tezaur"@ro, "Synonymický slovník"@sk, "Tezaver"@sl, "Tesauro"@es, "Tesaurus"@sv
+.
+
+mdrtype:ONTOLOGY a skos:Concept ;
+    skos:prefLabel "Онтология"@bg, "Ontologie"@cs, "Ontologi"@da, "Ontologie"@de, "Οντολογία"@el, "Ontology"@en, "Ontoloogia"@et, "Ontologia"@fi, "Ontologie"@fr, "Ontologija"@hr, "Ontológia"@hu, "Ontologia"@it, "Ontoloģija"@lv, "Ontologija"@lt, "Ontoloġija"@mt, "Ontologie"@nl, "Ontologi"@no, "Struktura pojęciowa"@pl, "Ontologia"@pt, "Ontologie"@ro, "Ontológia"@sk, "Ontologija"@sl, "Ontología"@es, "Ontologi"@sv
+.
