@@ -3,9 +3,9 @@
 ## Introduction
 
 > This repository's main reason of existence is **its associated wiki**, that can be consulted when browsing the git server's
-> webinterface for this repository and **clicking its *Wiki* menu option or icon**.
+> web interface for this repository and **clicking its *Wiki* menu option or icon**.
 
-We're describing a first server (hence "server1) that can run our installed tools and applications.
+We're describing a first server (hence "server 1") that can run our installed tools and applications.
 
 However, while we're here, this repository contains some useful files as well.
 
