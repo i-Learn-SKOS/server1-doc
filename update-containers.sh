@@ -13,7 +13,7 @@ function do_update() {
 	sudo docker pull $NAME
 	sudo docker logout gitlab.ilabt.imec.be:4567
 	echo "Starting new container on intended port (reboot safe)"
-	sudo docker run -d -p $PORT:$PORT --restart unless-stopped $NAME
+	sudo docker run -d -p $PORT:$PORT --add-host=host.docker.internal:host-gateway --restart unless-stopped $NAME
 	echo "Testing new container (in a while)"
 	sleep 5
 	curl -I http://localhost:$PORT
