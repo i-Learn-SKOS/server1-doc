@@ -176,10 +176,10 @@
 #    void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
 #    skosmos:sparqlGraph <http://ilearn.ilabt.imec.be/vocab/onddoel/> .
 
-:exp-vakken a skosmos:Vocabulary, void:Dataset ;
-    dc:title "a. vakken (experimenteel)"@nl ;
-    skosmos:shortName "EXP_VAKKEN";
-    dc:subject :cat_experimental ;
+:common-vakken a skosmos:Vocabulary, void:Dataset ;
+    dc:title "a. vakken (gemeenschappelijk)"@nl ;
+    skosmos:shortName "COMMON_VAKKEN";
+    dc:subject :cat_common ;
     void:uriSpace "https://w3id.org/onderwijs-vlaanderen/id/vak/";
     skosmos:language "nl";
     skosmos:defaultLanguage "nl";
@@ -189,10 +189,10 @@
     void:sparqlEndpoint <http://localhost:3030/skosmos/sparql> ;
     skosmos:sparqlGraph <https://w3id.org/onderwijs-vlaanderen/id/vak/> .
 
-:exp-ondstruct a skosmos:Vocabulary, void:Dataset ;
-    dc:title "b. onderwijsstructuur (experimenteel)"@nl ;
-    skosmos:shortName "EXP_ONDSTRUCT";
-    dc:subject :cat_experimental ;
+:common-ondstruct a skosmos:Vocabulary, void:Dataset ;
+    dc:title "b. onderwijsstructuur (gemeenschappelijk)"@nl ;
+    skosmos:shortName "COMMON_ONDSTRUCT";
+    dc:subject :cat_common ;
     void:uriSpace "https://w3id.org/onderwijs-vlaanderen/id/structuur/";
     skosmos:language "nl";
     skosmos:defaultLanguage "nl";
@@ -253,11 +253,11 @@
 	"MyWay concepten in ontwikkeling"@nl
 .
 
-:cat_experimental a skos:Concept ;
+:cat_common a skos:Concept ;
     skos:topConceptOf :categories ;
     skos:inScheme :categories ;
-    skos:prefLabel "Experimental concepts"@en,
-	"Experimentele concepten"@nl
+    skos:prefLabel "Common concepts"@en,
+        "Gemeenschappelijke concepten"@nl
 .
 
 mdrtype:THESAURUS a skos:Concept ;
