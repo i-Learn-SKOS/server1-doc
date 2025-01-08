@@ -180,7 +180,7 @@
     dc:title "a. vakken (gemeenschappelijk)"@nl ;
     skosmos:shortName "COMMON_VAKKEN";
     dc:subject :cat_common ;
-    void:uriSpace "https://w3id.org/onderwijs-vlaanderen/id/vak/";
+    void:uriSpace "https://w3id.org/onderwijs-vlaanderen/id/";
     skosmos:language "nl";
     skosmos:defaultLanguage "nl";
     skosmos:showTopConcepts false ;
@@ -193,7 +193,7 @@
     dc:title "b. onderwijsstructuur (gemeenschappelijk)"@nl ;
     skosmos:shortName "COMMON_ONDSTRUCT";
     dc:subject :cat_common ;
-    void:uriSpace "https://w3id.org/onderwijs-vlaanderen/id/structuur/";
+    void:uriSpace "https://w3id.org/onderwijs-vlaanderen/id/";
     skosmos:language "nl";
     skosmos:defaultLanguage "nl";
     skosmos:showTopConcepts true ;
